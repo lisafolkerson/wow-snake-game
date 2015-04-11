@@ -41,6 +41,18 @@ var displayScore = function(){
 
 displayScore();
 
+// create GameOver Suckaaaa text
+var gameOver = function() {
+	// clearInterval(interval);
+	context.font = "60px Courier";
+	context.fillStyle = "rgb(0,0,0)";
+	context.textAlign = "center";
+	context.textBaseline = "middle"
+	context.fillText("GAME OVER FOOL!", canvas.width/2, canvas.height/2);
+}
+
+gameOver();
+
 // create the apple
 
 
