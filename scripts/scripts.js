@@ -14,24 +14,32 @@ var blockSize = 10;
 var widthInBlocks = width / blockSize;
 var heightInBlocks = height / blockSize;
 
-// Set the score to 0
-
-var score = 0;
-
 // create the snake
 
 var snake = {};
 
 // draw the border 
-
 var border = function() {
 	context.fillStyle = "Gray";
 	context.fillRect(0,0,width,blockSize);
 	context.fillRect(0,0,blockSize,height);
 	context.fillRect(0,height-blockSize,width,blockSize);
+	context.fillRect(width-blockSize, 0, blockSize, height);
 }
 
 border();
+
+//display the score
+// Set the score to 0
+var score = 0;
+var displayScore = function(){
+	context.fillStyle = "rgb(0,0,0)";
+	context.font = "18px Courier";
+	context.textBaseline = 'top';
+	context.fillText('The score is: ' + score, blockSize*2, blockSize*2);
+};
+
+displayScore();
 
 // create the apple
 
