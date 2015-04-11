@@ -1,7 +1,7 @@
 // Set Up the Canvas
 
 var canvas = document.createElement('canvas');
-var content = canvas.getContext('2d');
+var context = canvas.getContext('2d');
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 document.body.appendChild(canvas);
@@ -21,6 +21,17 @@ var score = 0;
 // create the snake
 
 var snake = {};
+
+// draw the border 
+
+var border = function() {
+	context.fillStyle = "Gray";
+	context.fillRect(0,0,width,blockSize);
+	context.fillRect(0,0,blockSize,height);
+	context.fillRect(0,height-blockSize,width,blockSize);
+}
+
+border();
 
 // create the apple
 
