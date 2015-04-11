@@ -53,8 +53,33 @@ var gameOver = function() {
 
 gameOver();
 
+//CREATE BLOCK CONSTRUCTOR
+var block = function(col, row) {
+	this.col = col;
+	this.row = row;
+};
+
+block.prototype.drawSquare = function(color) {
+	var x = this.col * blockSize;
+	var y = this.row * blockSize;
+	context.fillStyle = color;
+	context.fillRect(x,y,blockSize,blockSize);
+};
+
+var sampleBlock = new block(3,4);
+sampleBlock.drawSquare('lightblue');
+
 // create the apple
 
+block.prototype.drawCircle = function(color) {
+	var centerX = this.col * blockSize + blockSize / 2;
+	var centerY = this.row * blockSize + blockSize / 2;
+	context.fillStyle = color;
+	circle(centerX, centerY, blockSize / 2, true);
+};
+
+var sampleCircle = new block(4,3);
+sampleCircle.drawCircle('chartreuse');
 
 
 // var interval = setInterval(function(){
