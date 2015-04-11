@@ -36,7 +36,7 @@ var displayScore = function(){
 	context.fillStyle = "rgb(0,0,0)";
 	context.font = "18px Courier";
 	context.textBaseline = 'top';
-	context.fillText('The score is: ' + score, blockSize*2, blockSize*2);
+	context.fillText('Your score is: ' + score, blockSize*2, blockSize*2);
 };
 
 displayScore();
