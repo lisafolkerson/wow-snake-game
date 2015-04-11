@@ -6,6 +6,14 @@ canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 document.body.appendChild(canvas);
 
+var width = canvas.width;
+var height = canvas.height;
+
+
+var blockSize = 10;
+var widthInBlocks = width / blockSize;
+var heightInBlocks = height / blockSize;
+
 // Set the score to 0
 
 var score = 0;
@@ -18,6 +26,9 @@ var snake = {};
 
 
 
+// var interval = setInterval(function(){
+
+// }, 1000);
 
 // Every 1000 milliseconds {
 // 	clear the Canvas
