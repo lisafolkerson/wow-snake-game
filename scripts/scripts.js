@@ -166,6 +166,41 @@ Snake.prototype.checkCollision = function(head) {
 		return wallCollision || selfCollision;
 };
 
+// Adding keyboard events
+
+var directions = {
+	37: "left",
+	38: "up",
+	39: "right",
+	40: "down"
+};
+
+$("body").keydown(function(event) {
+	var newDirection = directions[event.keyCode];
+	if (newDirection !== undefined) {
+		snake.setDirection(newDirection);
+	}
+});
+
+// Checks if a illegal direction is tried
+
+Snake.protoype.setDirection = function(newDirection) {
+	if (this.direction === "up" && newDirection === "down") {
+		return;
+	}
+	else if (this.direction === "down" && newDirection === "up") {
+		return;
+	}
+	else if (this.direction === "left" && newDirection === "right") {
+		return;
+	}
+	else if (this.direction === "right" && newDirection === "left") {
+		return;
+	}
+
+	this.nextDirection = newDirection;
+};
+
 
 
 
