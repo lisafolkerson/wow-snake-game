@@ -65,8 +65,8 @@ block.prototype.drawSquare = function(color) {
 	context.fillRect(x,y,blockSize,blockSize);
 };
 
-var sampleBlock = new block(3,4);
-sampleBlock.drawSquare('lightblue');
+// var sampleBlock = new block(3,4);
+// sampleBlock.drawSquare('lightblue');
 
 // create the apple
 
