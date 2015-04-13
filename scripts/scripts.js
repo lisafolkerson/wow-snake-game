@@ -13,8 +13,8 @@ var height = canvas.height;
 
 
 var blockSize = 10;
-var widthInBlocks = width / blockSize;
-var heightInBlocks = height / blockSize;
+var widthInBlocks = Math.floor(width / blockSize);
+var heightInBlocks = Math.floor (height / blockSize);
 
 // draw the border 
 var border = function() {
@@ -63,15 +63,12 @@ block.prototype.drawSquare = function(color) {
 	context.fillRect(x,y,blockSize,blockSize);
 };
 
-// var sampleBlock = new block(3,4);
-// sampleBlock.drawSquare('lightblue');
-
 // create the apple
-
 block.prototype.drawCircle = function(color) {
 	var centerX = this.col * blockSize + blockSize / 2;
 	var centerY = this.row * blockSize + blockSize / 2;
 	context.fillStyle = color;
+	context.beginPath();
 	context.arc(centerX, centerY, blockSize / 2, 0, Math.PI*2, false);
 	context.fill();
 	context.lineWidth = 1;
@@ -79,17 +76,10 @@ block.prototype.drawCircle = function(color) {
 	context.stroke();
 };
 
-// var sampleCircle = new block(20,24);
-// sampleCircle.drawCircle("chartreuse");
-
 
 block.prototype.equal = function (otherBlock) {
 	return this.col === otherBlock.col && this.row === otherBlock.row;
 };
-
-// var apple = new block (3,5);
-// var head = new block (3,5);
-// console.log(head.equal(apple));
 
 // CREATE THE SNAKE
 var Snake = function(){
@@ -107,8 +97,6 @@ Snake.prototype.draw = function() {
 		this.segments[i].drawSquare('dodgerblue');
 	}
 };
-
-
 
 Snake.prototype.move = function() {
 	var head = this.segments[0];
@@ -149,8 +137,8 @@ Snake.prototype.move = function() {
 Snake.prototype.checkCollision = function(head) {
 	var leftCollision = (head.col === 0);
 	var	topCollision = (head.row === 0);
-	var	rightCollision = (head.col === widthInBlocks - 1);
-	var	bottomCollision = (head.row === heightInBlocks -1);
+	var	rightCollision = (head.col === widthInBlocks-1);
+	var	bottomCollision = (head.row === heightInBlocks-1);
 
 	var	wallCollision = leftCollision || topCollision || rightCollision || bottomCollision;
 
@@ -164,10 +152,7 @@ Snake.prototype.checkCollision = function(head) {
 		return wallCollision || selfCollision;
 }
 
-
-
 // Checks if a illegal direction is tried
-
 Snake.prototype.setDirection = function(newDirection) {
 	if (this.direction === "up" && newDirection === "down") {
 		return;
@@ -201,20 +186,16 @@ Apple.prototype.move = function() {
 };
 
 var apple = new Apple();
-// apple.move();
-// apple.draw();
-
 var snake = new Snake();
-// snake.draw();
 
 var intervalId = setInterval(function() {
-	context.clearRect(0,0,width, height);
+	context.clearRect(0, 0, width, height);
 	displayScore();
 	snake.move();
 	snake.draw();
 	apple.draw();
 	border();
-}, 100);
+}, 80);
 
 // Adding keyboard events
 var directions = {
