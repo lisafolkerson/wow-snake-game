@@ -23,7 +23,7 @@ var snake = {};
 
 // draw the border 
 var border = function() {
-	context.fillStyle = "Gray";
+	context.fillStyle = "HotPink";
 	context.fillRect(0,0,width,blockSize);
 	context.fillRect(0,0,blockSize,height);
 	context.fillRect(0,height-blockSize,width,blockSize);
@@ -78,11 +78,15 @@ block.prototype.drawCircle = function(color) {
 	var centerX = this.col * blockSize + blockSize / 2;
 	var centerY = this.row * blockSize + blockSize / 2;
 	context.fillStyle = color;
-	circle(centerX, centerY, blockSize / 2, true);
+	context.arc(centerX, centerY, blockSize / 2, 0, Math.PI*2, false);
+	context.fill();
+	context.lineWidth = 1;
+	context.strokeStyle = 'limegreen';
+	context.stroke();
 };
 
-var sampleCircle = new block(4,3);
-sampleCircle.drawCircle('chartreuse');
+var sampleCircle = new block(20,24);
+sampleCircle.drawCircle("chartreuse");
 
 
 // var interval = setInterval(function(){
