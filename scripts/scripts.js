@@ -113,6 +113,41 @@ Snake.prototype.draw = function() {
 var snake = new Snake();
 snake.draw();
 
+Snake.prototype.move = function() {
+	var head = this.segments[0];
+	var newHead;
+
+	this.direction = this.nextDirection;
+
+	if (this.direction === "right") {
+		newHead = new block(head.col + 1, head.row);
+	} 
+	else if (this.direction === "down") {
+		newHead = new block(head.col, head.row + 1);
+	}
+	else if (this.direction === "left") {
+		newHead = new block(head.col - 1, head.row);
+	}
+	else if (this.direction === "up") {
+		newHead = new block (head.col, head.row-1);
+	}
+
+	if (this.checkCollision(newHead)) {
+		gameOver();
+		return;
+	}
+
+	this.segments.unshift(newHead);
+
+	if (newHead.equal(apple.position)) {
+		score++;
+		apple.move();
+	}
+	else {
+		this.segments.pop();
+	}
+};
+
 
 
 
