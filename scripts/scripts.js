@@ -7,8 +7,7 @@ canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 document.body.appendChild(canvas);
 
-// create the apple
-
+// get width and height from canvas
 var width = canvas.width;
 var height = canvas.height;
 
@@ -28,9 +27,10 @@ var border = function() {
 
 border();
 
-//display the score
 // Set the score to 0
+//display the score
 var score = 0;
+
 var displayScore = function(){
 	context.fillStyle = "rgb(0,0,0)";
 	context.font = "18px Courier";
@@ -49,8 +49,6 @@ var gameOver = function() {
 	context.textBaseline = "middle"
 	context.fillText("GAME OVER FOOL!", canvas.width/2, canvas.height/2);
 }
-
-gameOver();
 
 //CREATE BLOCK CONSTRUCTOR
 var block = function(col, row) {
@@ -81,8 +79,8 @@ block.prototype.drawCircle = function(color) {
 	context.stroke();
 };
 
-var sampleCircle = new block(20,24);
-sampleCircle.drawCircle("chartreuse");
+// var sampleCircle = new block(20,24);
+// sampleCircle.drawCircle("chartreuse");
 
 
 block.prototype.equal = function (otherBlock) {
@@ -149,14 +147,14 @@ Snake.prototype.move = function() {
 };
 
 Snake.prototype.checkCollision = function(head) {
-	var leftCollision = (head.col === 0),
-		topCollision = (head.row === 0),
-		rightCollision = (head.col === widthInBlocks - 1),
-		bottomCollision = (head.row === heightInBlocks -1),
+	var leftCollision = (head.col === 0);
+	var	topCollision = (head.row === 0);
+	var	rightCollision = (head.col === widthInBlocks - 1);
+	var	bottomCollision = (head.row === heightInBlocks -1);
 
-		wallCollision = leftCollision || topCollision || rightCollision || bottomCollision,
+	var	wallCollision = leftCollision || topCollision || rightCollision || bottomCollision;
 
-		selfCollision = false
+	var	selfCollision = false;
 
 		for (var i = 0; i < this.segments.length; i++) {
 			if (head.equal(this.segments[i])) {
@@ -164,10 +162,16 @@ Snake.prototype.checkCollision = function(head) {
 			}
 		}
 		return wallCollision || selfCollision;
-};
+}
+
+if (this.checkCollision(newHead)){
+	gameOver();
+	
+}
+
+this.segments.unshift(newHead);
 
 // Adding keyboard events
-
 var directions = {
 	37: "left",
 	38: "up",
@@ -202,7 +206,23 @@ Snake.protoype.setDirection = function(newDirection) {
 };
 
 
+var Apple = function() {
+	this.position = new block(10,10);
+};
 
+Apple.prototype.draw = function() {
+	this.position.drawCircle('chartreuse');
+};
+
+Apple.prototype.move = function() {
+	var randomCol = Math.floor(Math.random() * (widthInBlocks -2)) + 1;
+	var randomRow = Math.floor(Math.random() * (heightInBlocks -2)) + 1;
+	this.position = new block(randomCol, randomRow);
+};
+
+var apple = new Apple();
+apple.move();
+apple.draw();
 
 // var interval = setInterval(function(){
 
