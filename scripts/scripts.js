@@ -109,7 +109,7 @@ Snake.prototype.draw = function() {
 };
 
 var snake = new Snake();
-snake.draw();
+// snake.draw();
 
 Snake.prototype.move = function() {
 	var head = this.segments[0];
@@ -144,6 +144,7 @@ Snake.prototype.move = function() {
 	else {
 		this.segments.pop();
 	}
+
 };
 
 Snake.prototype.checkCollision = function(head) {
@@ -164,13 +165,6 @@ Snake.prototype.checkCollision = function(head) {
 		return wallCollision || selfCollision;
 }
 
-if (this.checkCollision(newHead)){
-	gameOver();
-	
-}
-
-this.segments.unshift(newHead);
-
 // Adding keyboard events
 var directions = {
 	37: "left",
@@ -188,7 +182,7 @@ $("body").keydown(function(event) {
 
 // Checks if a illegal direction is tried
 
-Snake.protoype.setDirection = function(newDirection) {
+Snake.prototype.setDirection = function(newDirection) {
 	if (this.direction === "up" && newDirection === "down") {
 		return;
 	}
