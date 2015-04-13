@@ -89,6 +89,9 @@ var sampleCircle = new block(20,24);
 sampleCircle.drawCircle("chartreuse");
 
 
+block.prototype.equal = function (otherBlock) {
+	return this.col
+};
 // var interval = setInterval(function(){
 
 // }, 1000);
