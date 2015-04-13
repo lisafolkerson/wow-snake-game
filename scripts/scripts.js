@@ -1,29 +1,14 @@
-<<<<<<< HEAD
-/// Set Up the Canvas
-
-var canvas = document.createElement('canvas');
-var content = canvas.getContext('2d');
-=======
 // Set Up the Canvas
 
 var canvas = document.createElement('canvas');
 var context = canvas.getContext('2d');
->>>>>>> 5c8ba0e03c8d87700954cb9228101e9109a1e268
+
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 document.body.appendChild(canvas);
 
-<<<<<<< HEAD
-// Set the score to 0
-
-var score = 0;
-
-// create the snake
-
-var snake = {};
-
 // create the apple
-=======
+
 var width = canvas.width;
 var height = canvas.height;
 
@@ -33,13 +18,9 @@ var widthInBlocks = width / blockSize;
 var heightInBlocks = height / blockSize;
 
 // create the snake
->>>>>>> 5c8ba0e03c8d87700954cb9228101e9109a1e268
 
 var snake = {};
 
-<<<<<<< HEAD
-
-=======
 // draw the border 
 var border = function() {
 	context.fillStyle = "Gray";
@@ -107,7 +88,7 @@ sampleCircle.drawCircle('chartreuse');
 // var interval = setInterval(function(){
 
 // }, 1000);
->>>>>>> 5c8ba0e03c8d87700954cb9228101e9109a1e268
+
 
 // Every 1000 milliseconds {
 // 	clear the Canvas
