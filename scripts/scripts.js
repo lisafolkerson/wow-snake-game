@@ -200,6 +200,10 @@ Apple.prototype.move = function() {
 	var randomCol = Math.floor(Math.random() * (widthInBlocks -2)) + 1;
 	var randomRow = Math.floor(Math.random() * (heightInBlocks -2)) + 1;
 	this.position = new block(randomCol, randomRow);
+
+	while(apple == block) {
+		apple.move();
+	}
 };
 
 var apple = new Apple();
