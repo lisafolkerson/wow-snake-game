@@ -25,7 +25,7 @@ var border = function() {
 	context.fillRect(width-blockSize, 0, blockSize, height);
 }
 
-border();
+// border();
 
 // Set the score to 0
 //display the score
@@ -38,7 +38,7 @@ var displayScore = function(){
 	context.fillText('Your score is: ' + score, blockSize*2, blockSize*2);
 };
 
-displayScore();
+// 
 
 // create GameOver Suckaaaa text
 var gameOver = function() {
@@ -108,8 +108,7 @@ Snake.prototype.draw = function() {
 	}
 };
 
-var snake = new Snake();
-// snake.draw();
+
 
 Snake.prototype.move = function() {
 	var head = this.segments[0];
@@ -165,20 +164,7 @@ Snake.prototype.checkCollision = function(head) {
 		return wallCollision || selfCollision;
 }
 
-// Adding keyboard events
-var directions = {
-	37: "left",
-	38: "up",
-	39: "right",
-	40: "down"
-};
 
-$("body").keydown(function(event) {
-	var newDirection = directions[event.keyCode];
-	if (newDirection !== undefined) {
-		snake.setDirection(newDirection);
-	}
-});
 
 // Checks if a illegal direction is tried
 
@@ -215,35 +201,32 @@ Apple.prototype.move = function() {
 };
 
 var apple = new Apple();
-apple.move();
-apple.draw();
+// apple.move();
+// apple.draw();
 
-// var interval = setInterval(function(){
+var snake = new Snake();
+// snake.draw();
 
-// }, 1000);
+var intervalId = setInterval(function() {
+	context.clearRect(0,0,width, height);
+	displayScore();
+	snake.move();
+	snake.draw();
+	apple.draw();
+	border();
+}, 100);
 
+// Adding keyboard events
+var directions = {
+	37: "left",
+	38: "up",
+	39: "right",
+	40: "down"
+};
 
-// Every 1000 milliseconds {
-// 	clear the Canvas
-// 	draw current score on screen
-// 	move snake in current direction
-
-// 	if (snake collides with wall or itself) {
-// 		end the game
-// 	} else if (snake eats an apple){
-// 		add one to score
-// 		move apple to new location
-// 		make snake longer
-// 	}
-// 	For (each segment of the snake) {
-// 		draw the segment
-// 	}
-// 	draw apple
-// 	draw border
-// }
-
-// When the user presses a key {
-// 	if (the key is an arrow)
-// }
-// }
-
+$("body").keydown(function(event) {
+	var newDirection = directions[event.keyCode];
+	if (newDirection !== undefined) {
+		snake.setDirection(newDirection);
+	}
+});
