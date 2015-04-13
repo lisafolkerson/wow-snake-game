@@ -40,8 +40,6 @@ var displayScore = function(){
 
 };
 
-// 
-
 // create GameOver Suckaaaa text
 var gameOver = function() {
 	// clearInterval(interval);
@@ -50,6 +48,22 @@ var gameOver = function() {
 	context.textAlign = "center";
 	context.textBaseline = "middle"
 	context.fillText("GAME OVER FOOL!", canvas.width/2, canvas.height/2);
+
+	$(window).keypress(function(e) {
+		if (e.keyCode === 0 || e.keyCode === 32) {
+			location.reload();
+		}
+	});
+
+}
+
+// create try again text
+var tryAgain = function() {
+	context.font = "30px Courier";
+	context.fillStyle = "rgb(0,0,0)";
+	context.textAlign = "center";
+	context.textBaseline = "top"
+	context.fillText("Press SPACEBAR to Try Again!", canvas.width/2, canvas.height/2 + 50) ;
 }
 
 //CREATE BLOCK CONSTRUCTOR
@@ -121,6 +135,7 @@ Snake.prototype.move = function() {
 
 	if (this.checkCollision(newHead)) {
 		gameOver();
+		tryAgain();
 		return;
 	}
 
@@ -205,6 +220,22 @@ var directions = {
 	38: "up",
 	39: "right",
 	40: "down"
+};
+
+// Add a reset for score and snake when the game ends
+var reset = function() {
+	// reset snake segments
+	Snake = function(){
+		this.segments = [
+			new block (7,5),
+			new block (6,5),
+			new block(5,5)
+		];
+		this.direction = 'right';
+		this.nextDirection = 'right';
+	};
+	// reset score to 0
+	score = 0;
 };
 
 $("body").keydown(function(event) {
