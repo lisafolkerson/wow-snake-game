@@ -148,6 +148,24 @@ Snake.prototype.move = function() {
 	}
 };
 
+Snake.prototype.checkCollision = function(head) {
+	var leftCollision = (head.col === 0),
+		topCollision = (head.row === 0),
+		rightCollision = (head.col === widthInBlocks - 1),
+		bottomCollision = (head.row === heightInBlocks -1),
+
+		wallCollision = leftCollision || topCollision || rightCollision || bottomCollision,
+
+		selfCollision = false
+
+		for (var i = 0; i < this.segments.length; i++) {
+			if (head.equal(this.segments[i])) {
+				selfCollision = true;
+			}
+		}
+		return wallCollision || selfCollision;
+};
+
 
 
 
