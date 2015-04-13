@@ -17,10 +17,6 @@ var blockSize = 10;
 var widthInBlocks = width / blockSize;
 var heightInBlocks = height / blockSize;
 
-// create the snake
-
-var snake = {};
-
 // draw the border 
 var border = function() {
 	context.fillStyle = "HotPink";
@@ -90,8 +86,36 @@ sampleCircle.drawCircle("chartreuse");
 
 
 block.prototype.equal = function (otherBlock) {
-	return this.col
+	return this.col === otherBlock.col && this.row === otherBlock.row;
 };
+
+// var apple = new block (3,5);
+// var head = new block (3,5);
+// console.log(head.equal(apple));
+
+// CREATE THE SNAKE
+var Snake = function(){
+	this.segments = [
+		new block (7,5),
+		new block (6,5),
+		new block(5,5)
+	];
+	this.direction = 'right';
+	this.nextDirection = 'right';
+};
+
+Snake.prototype.draw = function() {
+	for (var i = 0; i < this.segments.length; i++) {
+		this.segments[i].drawSquare('dodgerblue');
+	}
+};
+
+var snake = new Snake();
+snake.draw();
+
+
+
+
 // var interval = setInterval(function(){
 
 // }, 1000);
